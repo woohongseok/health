@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.ts",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -20,13 +21,10 @@
     "react-native": "0.81.4"
   },
   "devDependencies": {
-    "@eslint/js": "^9.34.0",
+    "@health/eslint-config": "workspace:*",
+    "@health/prettier-config": "workspace:*",
     "@types/react": "~19.1.0",
     "eslint": "^9.34.0",
-    "eslint-config-prettier": "^10.1.1",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "typescript": "~5.9.2",
-    "typescript-eslint": "^8.40.0"
+    "typescript": "~5.9.2"
   }
 }
