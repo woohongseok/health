@@ -1,6 +1,7 @@
 {
   "name": "health",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
@@ -9,6 +10,7 @@
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
+    "@health/prettier-config": "workspace:*",
     "prettier": "^3.6.2",
     "turbo": "^2.5.8",
     "typescript": "5.9.2"
