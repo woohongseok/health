@@ -12,6 +12,7 @@
     "dev": "expo start",
     "build": "expo build",
     "lint": "eslint . --max-warnings 0",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
@@ -35,6 +36,7 @@
     "eslint": "^9.34.0",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.4.17",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.2",
+    "@monorepo/eslint-config": "workspace:*"
   }
 }
