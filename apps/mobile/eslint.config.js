@@ -1,2 +1,3 @@
-import config from '@monorepo/eslint-config';
-export default config;
+import { reactNativeConfig } from '@monorepo/eslint-config';
+
+export default reactNativeConfig;
