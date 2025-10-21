@@ -3,21 +3,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@components/*": [
-        "./src/components/*"
-      ],
-      "@screens/*": [
-        "./src/screens/*"
-      ],
-      "@utils/*": [
-        "./src/utils/*"
-      ],
-      "@types/*": [
-        "./src/types/*"
-      ]
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@screens/*": ["./src/screens/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@types/*": ["./src/types/*"]
     }
   },
   "include": [
@@ -29,12 +19,5 @@
     "index.ts",
     "nativewind-env.d.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "android",
-    "ios",
-    "web-build",
-    ".expo",
-    "dist"
-  ]
+  "exclude": ["node_modules", "android", "ios", "web-build", ".expo", "dist"]
 }

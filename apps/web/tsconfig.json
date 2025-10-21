@@ -2,35 +2,17 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./app/*"
-      ],
-      "@components/*": [
-        "./app/components/*"
-      ],
-      "@lib/*": [
-        "./app/lib/*"
-      ],
-      "@utils/*": [
-        "./app/utils/*"
-      ],
-      "@types/*": [
-        "./app/types/*"
-      ],
-      "@styles/*": [
-        "./app/styles/*"
-      ],
-      "@hooks/*": [
-        "./app/hooks/*"
-      ]
+      "@/*": ["./app/*"],
+      "@components/*": ["./app/components/*"],
+      "@lib/*": ["./app/lib/*"],
+      "@utils/*": ["./app/utils/*"],
+      "@types/*": ["./app/types/*"],
+      "@styles/*": ["./app/styles/*"],
+      "@hooks/*": ["./app/hooks/*"]
     },
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": [
-      "ES2020",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     "strict": true,
@@ -49,14 +31,6 @@
     "allowJs": true,
     "noEmit": true
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "next-env.d.ts",
-    "next.config.js",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", "next.config.js", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }
