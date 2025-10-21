@@ -1,0 +1,21 @@
+{
+  "name": "@monorepo/prettier-config",
+  "version": "1.0.0",
+  "description": "Shared prettier configuration for the monorepo",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "directory": "packages/prettier-config"
+  },
+  "keywords": [
+    "prettier",
+    "config",
+    "monorepo"
+  ]
+}
