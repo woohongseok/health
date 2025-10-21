@@ -13,7 +13,13 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.health.mobile",
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "636406118641-ia5obnss5lajmii877dtbdfgn5alkapr.apps.googleusercontent.com"
+        }
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -21,11 +27,25 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.health.mobile"
     },
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.636406118641-ia5obnss5lajmii877dtbdfgn5alkapr"
+        }
+      ],
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "8df9f1cb-3a54-4b32-bb4c-39079b093e72"
+      }
     }
   }
 }
