@@ -66,6 +66,9 @@ importers:
       '@monorepo/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@repo/tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/tsconfig
       '@types/react':
         specifier: ~19.1.10
         version: 19.1.17
@@ -97,6 +100,9 @@ importers:
       '@monorepo/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@repo/tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/tsconfig
       '@types/node':
         specifier: ^22.15.3
         version: 22.15.3
@@ -145,6 +151,8 @@ importers:
       typescript-eslint:
         specifier: ^8.0.0
         version: 8.46.2(eslint@9.34.0(jiti@1.21.7))(typescript@5.9.2)
+
+  packages/tsconfig: {}
 
 packages:
 
