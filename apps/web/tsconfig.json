@@ -45,7 +45,9 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "allowJs": true,
+    "noEmit": true
   },
   "include": [
     "**/*.ts",
