@@ -17,9 +17,9 @@
       "bundleIdentifier": "com.health.mobile",
       "config": {
         "googleSignIn": {
-          "reservedClientId": "636406118641-ia5obnss5lajmii877dtbdfgn5alkapr.apps.googleusercontent.com"
+          "reservedClientId": "$EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID"
         },
-        "kakaoAppKey": "add your kakao app key here"
+        "kakaoAppKey": "$EXPO_PUBLIC_KAKAO_NATIVE_APP_KEY"
       }
     },
     "android": {
@@ -31,7 +31,7 @@
       "predictiveBackGestureEnabled": false,
       "package": "com.health.mobile",
       "config": {
-        "kakaoAppKey": "add your kakao app key here"
+        "kakaoAppKey": "$EXPO_PUBLIC_KAKAO_NATIVE_APP_KEY"
       }
     },
     "web": {
@@ -48,13 +48,13 @@
       [
         "@react-native-seoul/kakao-login",
         {
-          "kakaoAppKey": "add your kakao app key here"
+          "kakaoAppKey": "$EXPO_PUBLIC_KAKAO_NATIVE_APP_KEY"
         }
       ]
     ],
     "extra": {
       "eas": {
-        "projectId": "8df9f1cb-3a54-4b32-bb4c-39079b093e72"
+        "projectId": "$EAS_PROJECT_ID"
       }
     }
   }
