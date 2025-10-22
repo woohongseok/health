@@ -1,0 +1,62 @@
+{
+  "expo": {
+    "name": "mobile",
+    "slug": "mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "scheme": "health",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.health.mobile",
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "$EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID"
+        },
+        "kakaoAppKey": "$EXPO_PUBLIC_KAKAO_NATIVE_APP_KEY"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "package": "com.health.mobile",
+      "config": {
+        "kakaoAppKey": "$EXPO_PUBLIC_KAKAO_NATIVE_APP_KEY"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.636406118641-ia5obnss5lajmii877dtbdfgn5alkapr"
+        }
+      ],
+      [
+        "@react-native-seoul/kakao-login",
+        {
+          "kakaoAppKey": "$EXPO_PUBLIC_KAKAO_NATIVE_APP_KEY"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "$EAS_PROJECT_ID"
+      }
+    }
+  }
+}
