@@ -18,7 +18,8 @@
       "config": {
         "googleSignIn": {
           "reservedClientId": "636406118641-ia5obnss5lajmii877dtbdfgn5alkapr.apps.googleusercontent.com"
-        }
+        },
+        "kakaoAppKey": "add your kakao app key here"
       }
     },
     "android": {
@@ -28,7 +29,10 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.health.mobile"
+      "package": "com.health.mobile",
+      "config": {
+        "kakaoAppKey": "add your kakao app key here"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -41,6 +45,12 @@
           "iosUrlScheme": "com.googleusercontent.apps.636406118641-ia5obnss5lajmii877dtbdfgn5alkapr"
         }
       ],
+      [
+        "@react-native-seoul/kakao-login",
+        {
+          "kakaoAppKey": "add your kakao app key here"
+        }
+      ]
     ],
     "extra": {
       "eas": {
