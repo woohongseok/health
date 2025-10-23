@@ -1,82 +1,11 @@
-import { View, Text, TouchableOpacity, ActivityIndicator, Alert } from "react-native";
-import { GoogleSignin, statusCodes } from "@react-native-google-signin/google-signin";
-import { login, getProfile, KakaoOAuthToken, KakaoProfile } from "@react-native-seoul/kakao-login";
-import { supabase } from "lib/supabase";
+import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import { useGoogleSignIn, useKakaoSignIn } from "hooks/useLogin";
+import { AuthStore } from "lib/store/authStore";
 
-export default function LoginScreen({
-  loading,
-  setLoading,
-}: {
-  loading: boolean;
-  setLoading: (loading: boolean) => void;
-}) {
-  const handleGoogleSignIn = async () => {
-    setLoading(true);
-    try {
-      await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
-
-      if (userInfo.data?.idToken) {
-        const { error } = await supabase.auth.signInWithIdToken({
-          provider: "google",
-          token: userInfo.data.idToken,
-        });
-
-        if (error) {
-          Alert.alert(
-            "Sign In Error",
-            `${error.message}\n\nPlease enable "Skip nonce check" in Supabase Dashboard:\nAuthentication > Providers > Google`
-          );
-        } else {
-          Alert.alert("Success", "Successfully signed in with Google!");
-        }
-      } else {
-        throw new Error("no ID token present!");
-      }
-    } catch (error: unknown) {
-      const err = error as { code?: string; message?: string };
-      if (err.code === statusCodes.SIGN_IN_CANCELLED) {
-        Alert.alert("Sign In Cancelled", "Sign in was cancelled");
-      } else if (err.code === statusCodes.IN_PROGRESS) {
-        Alert.alert("Sign In", "Sign in is already in progress");
-      } else if (err.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        Alert.alert("Play Services Error", "Google Play Services is not available or outdated");
-      } else {
-        Alert.alert("Sign In Error", err.message || "An error occurred during sign in");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleKakaoSignIn = async () => {
-    setLoading(true);
-    try {
-      const token: KakaoOAuthToken = await login();
-
-      const profile: KakaoProfile = await getProfile();
-
-      Alert.alert("Kakao Login Success", `Welcome ${profile.nickname}!`);
-      const { error } = await supabase.auth.signInWithIdToken({
-        provider: "kakao",
-        token: token.idToken,
-      });
-
-      if (error) {
-        Alert.alert(
-          "Sign In Error",
-          `${error.message}\n\nPlease enable "Skip nonce check" in Supabase Dashboard:\nAuthentication > Providers > Google`
-        );
-      } else {
-        Alert.alert("Success", "Successfully signed in with Kakao!");
-      }
-    } catch (error: unknown) {
-      const err = error as { message?: string };
-      Alert.alert("Kakao Login Error", err.message || "An error occurred during Kakao login");
-    } finally {
-      setLoading(false);
-    }
-  };
+export default function LoginScreen() {
+  const { loading } = AuthStore();
+  const googleSignIn = useGoogleSignIn();
+  const kakaoSignIn = useKakaoSignIn();
 
   return (
     <>
@@ -98,7 +27,7 @@ export default function LoginScreen({
         <View className="gap-3">
           <TouchableOpacity
             className="flex-row items-center justify-center py-4 px-6 rounded-xl border border-gray-300 bg-white min-h-14"
-            onPress={handleGoogleSignIn}
+            onPress={() => googleSignIn.mutate()}
             disabled={loading}
           >
             {loading ? (
@@ -113,7 +42,7 @@ export default function LoginScreen({
 
           <TouchableOpacity
             className="flex-row items-center justify-center py-4 px-6 rounded-xl border border-yellow-400 bg-yellow-400 min-h-14"
-            onPress={handleKakaoSignIn}
+            onPress={() => kakaoSignIn.mutate()}
             disabled={loading}
           >
             {loading ? (

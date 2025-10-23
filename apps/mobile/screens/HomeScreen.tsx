@@ -1,8 +1,10 @@
 import { Session } from "@supabase/supabase-js";
-import { supabase } from "lib/supabase";
-import { TouchableOpacity, Text, View } from "react-native";
+import { TouchableOpacity, Text, View, ActivityIndicator } from "react-native";
+import { useSignOut } from "hooks/useAuth";
 
 export default function HomeScreen({ session }: { session: Session }) {
+  const signOut = useSignOut();
+
   return (
     <View className="flex-1 bg-white">
       <View className="items-center pt-16 pb-10">
@@ -25,9 +27,14 @@ export default function HomeScreen({ session }: { session: Session }) {
 
         <TouchableOpacity
           className="bg-red-500 rounded-xl py-4 px-6 items-center"
-          onPress={() => supabase.auth.signOut()}
+          onPress={() => signOut.mutate()}
+          disabled={signOut.isPending}
         >
-          <Text className="text-white font-semibold text-base">로그아웃</Text>
+          {signOut.isPending ? (
+            <ActivityIndicator color="#ffffff" size="small" />
+          ) : (
+            <Text className="text-white font-semibold text-base">로그아웃</Text>
+          )}
         </TouchableOpacity>
       </View>
 
