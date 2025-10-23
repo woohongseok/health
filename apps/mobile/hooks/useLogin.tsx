@@ -15,7 +15,7 @@ export const useGoogleSignIn = () => {
       const userInfo = await GoogleSignin.signIn();
 
       if (!userInfo.data?.idToken) {
-        throw new Error("no ID token present!");
+        throw new Error("ID 토큰이 없습니다");
       }
 
       const { data, error } = await supabase.auth.signInWithIdToken({
@@ -34,7 +34,7 @@ export const useGoogleSignIn = () => {
     onSuccess: () => {
       Alert.alert("성공", "Google로 로그인되었습니다!");
     },
-    onError: (error: any) => {
+    onError: (error: { code: string; message: string }) => {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         Alert.alert("로그인 취소됨", "로그인이 취소되었습니다");
       } else if (error.code === statusCodes.IN_PROGRESS) {
@@ -78,9 +78,8 @@ export const useKakaoSignIn = () => {
     },
     onSuccess: (data) => {
       Alert.alert("카카오 로그인 성공", `${data.profile.nickname}님 환영합니다!`);
-      Alert.alert("성공", "카카오로 로그인되었습니다!");
     },
-    onError: (error: any) => {
+    onError: (error) => {
       Alert.alert("카카오 로그인 오류", error.message || "카카오 로그인 중 오류가 발생했습니다");
     },
     onSettled: () => {
