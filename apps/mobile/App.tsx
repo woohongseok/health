@@ -2,15 +2,8 @@ import "./global.css";
 
 import { useState, useEffect } from "react";
 import { supabase } from "./lib/supabase";
-import {
-  View,
-  Alert,
-  TouchableOpacity,
-  Text,
-  SafeAreaView,
-  ActivityIndicator,
-  StatusBar,
-} from "react-native";
+import { View, Alert, TouchableOpacity, Text, ActivityIndicator, StatusBar } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Session } from "@supabase/supabase-js";
 import { GoogleSignin, statusCodes } from "@react-native-google-signin/google-signin";
 import { login, getProfile, KakaoOAuthToken, KakaoProfile } from "@react-native-seoul/kakao-login";
@@ -31,9 +24,13 @@ export default function App() {
       setSession(session);
     });
 
-    supabase.auth.onAuthStateChange((_event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const handleGoogleSignIn = async () => {
