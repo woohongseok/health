@@ -2,43 +2,68 @@ import { Session } from "@supabase/supabase-js";
 import { TouchableOpacity, Text, View, ActivityIndicator } from "react-native";
 import { useSignOut } from "hooks/useAuth";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faHome, faChartBar, faUser, faQuestion } from "@fortawesome/free-solid-svg-icons";
 
 const Tab = createBottomTabNavigator();
 
 function DashboardScreen() {
   return (
     <View className="flex-1 bg-white">
-      <View className="items-center pt-12 pb-10">
-        <View className="mb-6">
-          <View className="w-20 h-20 rounded-full bg-blue-50 justify-center items-center border-2 border-blue-100">
-            <Text className="text-4xl">📊</Text>
+      {/* Header Section */}
+      <View className="bg-gradient-to-b from-blue-50 to-white pt-8 pb-6 px-6">
+        <View className="mb-4">
+          <View className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-100 to-blue-50 justify-center items-center border-2 border-blue-200 shadow-sm">
+            <Text className="text-3xl">📊</Text>
           </View>
         </View>
-        <Text className="text-3xl font-bold text-gray-800 text-center mb-2 leading-9">
-          건강 대시보드
-        </Text>
-        <Text className="text-base text-gray-500 text-center leading-6">오신 것을 환영합니다</Text>
+        <Text className="text-2xl font-bold text-gray-900 mb-1">건강 대시보드</Text>
+        <Text className="text-sm text-gray-500">오늘의 건강 상태를 확인해보세요</Text>
       </View>
 
-      <View className="flex-1 justify-center px-6">
-        <View className="space-y-4">
-          <View className="bg-blue-50 rounded-xl p-4 border border-blue-100">
-            <Text className="text-sm text-blue-600 font-semibold mb-2">걸음 수</Text>
-            <Text className="text-3xl font-bold text-blue-700">8,234</Text>
-            <Text className="text-xs text-blue-500 mt-1">목표: 10,000</Text>
+      {/* Content Section */}
+      <View className="flex-1 px-6 pt-6 pb-8">
+        <View className="space-y-3">
+          <View className="bg-gradient-to-br from-blue-50 to-blue-25 rounded-2xl p-5 border border-blue-100 shadow-sm">
+            <View className="flex-row justify-between items-start mb-3">
+              <Text className="text-xs font-semibold text-blue-600 uppercase tracking-wide">
+                걸음 수
+              </Text>
+              <Text className="text-2xl">👟</Text>
+            </View>
+            <Text className="text-3xl font-bold text-blue-900 mb-2">8,234</Text>
+            <View className="bg-blue-100 h-1.5 rounded-full overflow-hidden">
+              <View className="bg-blue-600 h-full" style={{ width: "82%" }} />
+            </View>
+            <Text className="text-xs text-blue-600 mt-2">목표까지 1,766 남음</Text>
           </View>
 
-          <View className="bg-green-50 rounded-xl p-4 border border-green-100">
-            <Text className="text-sm text-green-600 font-semibold mb-2">수면 시간</Text>
-            <Text className="text-3xl font-bold text-green-700">7h 30m</Text>
-            <Text className="text-xs text-green-500 mt-1">좋은 수면입니다</Text>
+          <View className="bg-gradient-to-br from-green-50 to-green-25 rounded-2xl p-5 border border-green-100 shadow-sm">
+            <View className="flex-row justify-between items-start mb-3">
+              <Text className="text-xs font-semibold text-green-600 uppercase tracking-wide">
+                수면 시간
+              </Text>
+              <Text className="text-2xl">😴</Text>
+            </View>
+            <Text className="text-3xl font-bold text-green-900 mb-2">7h 30m</Text>
+            <View className="bg-green-100 h-1.5 rounded-full overflow-hidden">
+              <View className="bg-green-600 h-full" style={{ width: "94%" }} />
+            </View>
+            <Text className="text-xs text-green-600 mt-2">권장: 8시간</Text>
           </View>
 
-          <View className="bg-purple-50 rounded-xl p-4 border border-purple-100">
-            <Text className="text-sm text-purple-600 font-semibold mb-2">심박수</Text>
-            <Text className="text-3xl font-bold text-purple-700">72 bpm</Text>
-            <Text className="text-xs text-purple-500 mt-1">정상 범위</Text>
+          <View className="bg-gradient-to-br from-purple-50 to-purple-25 rounded-2xl p-5 border border-purple-100 shadow-sm">
+            <View className="flex-row justify-between items-start mb-3">
+              <Text className="text-xs font-semibold text-purple-600 uppercase tracking-wide">
+                심박수
+              </Text>
+              <Text className="text-2xl">❤️</Text>
+            </View>
+            <Text className="text-3xl font-bold text-purple-900 mb-2">72 bpm</Text>
+            <View className="bg-purple-100 h-1.5 rounded-full overflow-hidden">
+              <View className="bg-purple-600 h-full" style={{ width: "72%" }} />
+            </View>
+            <Text className="text-xs text-purple-600 mt-2">정상 범위 (60-100)</Text>
           </View>
         </View>
       </View>
@@ -49,22 +74,40 @@ function DashboardScreen() {
 function HistoryScreen() {
   return (
     <View className="flex-1 bg-white">
-      <View className="items-center pt-12 pb-8">
-        <View className="mb-6">
-          <View className="w-20 h-20 rounded-full bg-purple-50 justify-center items-center border-2 border-purple-100">
-            <Text className="text-4xl">📈</Text>
+      {/* Header Section */}
+      <View className="bg-gradient-to-b from-purple-50 to-white pt-8 pb-6 px-6">
+        <View className="mb-4">
+          <View className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-100 to-purple-50 justify-center items-center border-2 border-purple-200 shadow-sm">
+            <Text className="text-3xl">📈</Text>
           </View>
         </View>
-        <Text className="text-2xl font-bold text-gray-800">건강 기록</Text>
+        <Text className="text-2xl font-bold text-gray-900 mb-1">건강 기록</Text>
+        <Text className="text-sm text-gray-500">최근 7일간의 건강 데이터</Text>
       </View>
 
-      <View className="flex-1 px-6">
-        <View className="space-y-3">
+      {/* Content Section */}
+      <View className="flex-1 px-6 pt-6 pb-8">
+        <View className="space-y-2.5">
           {[1, 2, 3, 4, 5].map((item) => (
-            <View key={item} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <Text className="text-sm text-gray-600 mb-1">2025년 10월 {23 - item}일</Text>
-              <Text className="text-base font-semibold text-gray-800">평균 심박수: 71 bpm</Text>
-              <Text className="text-xs text-gray-500 mt-2">걸음 수: 9,234 | 수면: 7h 15m</Text>
+            <View
+              key={item}
+              className="bg-gradient-to-r from-gray-50 to-white rounded-xl p-4 border border-gray-200 shadow-xs active:bg-gray-100"
+            >
+              <View className="flex-row justify-between items-start mb-2">
+                <View>
+                  <Text className="text-xs text-gray-500 font-medium">
+                    2025년 10월 {23 - item}일
+                  </Text>
+                  <Text className="text-sm font-semibold text-gray-900 mt-1">평균 심박수</Text>
+                </View>
+                <View className="bg-blue-100 px-3 py-1.5 rounded-lg">
+                  <Text className="text-sm font-bold text-blue-700">71 bpm</Text>
+                </View>
+              </View>
+              <View className="flex-row justify-between text-xs text-gray-600 space-x-4 mt-2">
+                <Text>👟 9,234 걸음</Text>
+                <Text>😴 7h 15m</Text>
+              </View>
             </View>
           ))}
         </View>
@@ -78,47 +121,56 @@ function ProfileScreen({ session }: { session: Session }) {
 
   return (
     <View className="flex-1 bg-white">
-      <View className="items-center pt-12 pb-8">
-        <View className="mb-6">
-          <View className="w-24 h-24 rounded-full bg-blue-50 justify-center items-center border-2 border-blue-100">
-            <Text className="text-5xl">👤</Text>
+      {/* Header Section */}
+      <View className="bg-gradient-to-b from-blue-50 to-white pt-8 pb-6 px-6">
+        <View className="mb-4">
+          <View className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-100 to-blue-50 justify-center items-center border-3 border-blue-200 shadow-md">
+            <Text className="text-4xl">👤</Text>
           </View>
         </View>
-        <Text className="text-2xl font-bold text-gray-800">프로필</Text>
+        <Text className="text-2xl font-bold text-gray-900 mb-1">프로필</Text>
+        <Text className="text-sm text-gray-500">계정 정보 관리</Text>
       </View>
 
-      <View className="flex-1 px-6">
-        <View className="space-y-4">
-          <View className="bg-blue-50 rounded-xl p-4 border border-blue-100">
-            <Text className="text-sm text-gray-600 mb-2">이메일</Text>
-            <Text className="text-lg font-semibold text-gray-800">{session.user.email}</Text>
+      {/* Content Section */}
+      <View className="flex-1 px-6 pt-6 pb-8">
+        <View className="space-y-3">
+          {/* Email Card */}
+          <View className="bg-gradient-to-br from-blue-50 to-blue-25 rounded-2xl p-5 border border-blue-100">
+            <Text className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-2">
+              이메일 주소
+            </Text>
+            <Text className="text-base font-semibold text-gray-900">{session.user.email}</Text>
           </View>
 
-          <View className="bg-blue-50 rounded-xl p-4 border border-blue-100">
-            <Text className="text-sm text-gray-600 mb-2">사용자 ID</Text>
-            <Text className="text-lg font-semibold text-gray-800 font-mono">
-              {session.user.id?.slice(0, 12)}...
+          {/* User ID Card */}
+          <View className="bg-gradient-to-br from-gray-50 to-gray-25 rounded-2xl p-5 border border-gray-200">
+            <Text className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-2">
+              사용자 ID
+            </Text>
+            <Text className="text-xs font-mono text-gray-700 tracking-wider">
+              {session.user.id?.slice(0, 16)}...
             </Text>
           </View>
 
+          {/* Sign Out Button */}
           <TouchableOpacity
-            className="bg-red-500 rounded-xl py-4 px-6 items-center mt-6"
+            className="bg-gradient-to-r from-red-500 to-red-600 rounded-xl py-4 px-6 items-center justify-center mt-8 shadow-md active:opacity-90"
             onPress={() => signOut.mutate()}
             disabled={signOut.isPending}
           >
             {signOut.isPending ? (
               <ActivityIndicator color="#ffffff" size="small" />
             ) : (
-              <Text className="text-white font-semibold text-base">로그아웃</Text>
+              <Text className="text-white font-bold text-base">로그아웃</Text>
             )}
           </TouchableOpacity>
-        </View>
-      </View>
 
-      <View className="pb-4 pt-6">
-        <Text className="text-xs text-gray-400 text-center leading-5">
-          © 2025 Health App. All rights reserved.
-        </Text>
+          {/* Info Text */}
+          <Text className="text-xs text-gray-400 text-center mt-8 leading-5">
+            © 2025 Health App{"\n"}모든 권리를 보유합니다
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -143,19 +195,19 @@ export default function HomeScreen({ session }: { session: Session }) {
           marginTop: 4,
         },
         tabBarIcon: ({ color, size }: { color: string; size: number }) => {
-          let iconName: keyof typeof FontAwesome.glyphMap;
+          let icon;
 
           if (route.name === "Dashboard") {
-            iconName = "home";
+            icon = faHome;
           } else if (route.name === "History") {
-            iconName = "bar-chart";
+            icon = faChartBar;
           } else if (route.name === "Profile") {
-            iconName = "user";
+            icon = faUser;
           } else {
-            iconName = "question";
+            icon = faQuestion;
           }
 
-          return <FontAwesome name={iconName} size={size} color={color} />;
+          return <FontAwesomeIcon icon={icon} size={size} color={color} />;
         },
       })}
     >

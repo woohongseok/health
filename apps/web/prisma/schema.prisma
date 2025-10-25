@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Supabase 인증 사용자 연동
+model User {
+  id        String     @id @default(uuid()) @db.Uuid
+  email     String     @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  // 관계
+  userProfile UserProfile?
+
+  @@map("users")
+}
+
+// 탄단지 계산용 사용자 프로필
+model UserProfile {
+  id                String    @id @default(uuid()) @db.Uuid
+  user              User      @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  // 기본 정보
+  gender            Gender             // 성별: MALE, FEMALE
+  age               Int                // 나이 (만)
+  height            Float              // 키 (cm)
+  weight            Float              // 체중 (kg)
+
+  // 생활 습관 (활동 계수)
+  lifestyle         Lifestyle          // 1.05 ~ 1.31
+
+  // 운동 구력
+  exerciseLevel     ExerciseLevel      // 200 ~ 240
+
+  // 운동 횟수 (주 단위)
+  exerciseFrequency ExerciseFrequency  // 0 ~ 2.30
+
+  // 체력 수준
+  healthLevel       HealthLevel        // 42 ~ 88
+
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@map("macro_profiles")
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum Lifestyle {
+  SEDENTARY              // 1.05: 15시간 이상 누워있습니다
+  MINIMAL                // 1.10: 집에서 거의 움직이지 않습니다
+  OFFICE_WORK            // 1.17: 학생 또는 일반 사무직 입니다
+  ACTIVE                 // 1.24: 활동적입니다
+  VERY_ACTIVE            // 1.31: 보통 뛰어 다닙니다  
+}
+
+enum ExerciseLevel {
+  BEGINNER               // 200 입문자
+  INTERMEDIATE_1_3       // 210 1~3년차 헬린이
+  INTERMEDIATE_3_5       // 220 3~5년차 중급자
+  ADVANCED               // 230 5년차 이상 헬창
+  EXPERT                 // 240 10년차 이상 관장
+}
+
+enum ExerciseFrequency {
+  NONE                   // 0
+  ONCE_WEEKLY            // 0.8 주 1회
+  TWICE_WEEKLY           // 1.05 주 2회
+  THRICE_WEEKLY          // 1.3 주 3회
+  FOUR_WEEKLY            // 1.55 주 4회
+  FIVE_WEEKLY            // 1.8 주 5회
+  SIX_WEEKLY             // 2.05 주 6회
+  DAILY                  // 2.30 주 7회
+}
+
+enum HealthLevel {
+  VERY_GOOD              // 42 매우 좋음 - 풀코스(42km) 달리기 완주 가능  
+  GOOD                   // 50 좋음 - 하프코스(21km) 달리기 완주 가능
+  ABOVE_AVERAGE          // 58 평균 이상 - 10km 달리기 완주 가능
+  AVERAGE                // 66 평균 - 5km 달리기 가능
+  BELOW_AVERAGE          // 74 평균 이하 - 달리면 힘들어요
+  POOR                   // 80 나쁨 - 못 달리겠어요
+  VERY_POOR              // 88 매우 나쁨 - 걷지도 못하겠어요
+}

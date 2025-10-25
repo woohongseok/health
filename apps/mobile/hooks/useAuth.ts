@@ -14,9 +14,6 @@ export const useAuth = () => {
       } = await supabase.auth.getSession();
       return session;
     },
-    // onSuccess: (data: Session | null) => {
-    //   setSession(data);
-    // },
   });
 
   useEffect(() => {
